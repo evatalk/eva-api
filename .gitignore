@@ -1,3 +1,14 @@
+# SQLite
+db.sqlite3
+
+# Django - Migrations
+migrations/
+
+# VSCODE
+.vscode/
+.DS_Store
+.idea
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,9 @@
+api:
+  build: .
+  command: python eva/manage.py runserver 0.0.0.0:8000
+  stdin_open: true
+  tty: true
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8000"

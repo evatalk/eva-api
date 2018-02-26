@@ -1,7 +1,7 @@
 from django.urls import path
 
-from . import views
+from core.views.handler import RequestHandler
 
 urlpatterns = [
-    # path('', views.index, name='index'),
+    path('message/handler', RequestHandler.as_view(), name='request_handler'),
 ]

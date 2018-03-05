@@ -16,12 +16,12 @@ class Message(models.Models):
 
 
 class MessagingServiceUserIdentifier(models.Models):
-    messaging_service = models.ForeignKey(
+    messaging_service_id = models.ForeignKey(
         User, related_name="messaging_service_user_identifier")
-    user = models.ForeignKey(
+    user_id = models.ForeignKey(
         User, related_name="messaging_service_user_identifier")
 
 
 class UserMessage(models.Models):
-    message = models.ForeignKey(Message, related_name="user_messages")
-    user = models.ForeignKey(User, related_name="user_messages")
+    message_id = models.ForeignKey(Message, related_name="user_messages")
+    user_id = models.ForeignKey(User, related_name="user_messages")

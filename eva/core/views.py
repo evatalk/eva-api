@@ -2,8 +2,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .conversations.request_handler import MessageFlowHandler
 from eva.settings import eva_ia
+from handlers.conversations.request_handler import MessageFlowHandler
 
 
 class RequestHandler(APIView):

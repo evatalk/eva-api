@@ -15,8 +15,11 @@ class ConversationTestCase(TestCase):
                     "value": "greetings"}]},
             "msg_id": "0gmiTaHqMxhaXbBJD"}
 
-        self.assertEqual(MessageFlowHandler.response(
-            wit_response_json_greetings) in response_map['greetings'], True)
+        message, intent = MessageFlowHandler.response(
+            wit_response_json_greetings)
+
+        self.assertEqual(intent, 'greetings')
+        self.assertEqual(message in response_map['greetings'], True)
 
     def test_response_intent_cursing(self):
         wit_response_json_cursing = {
@@ -27,8 +30,11 @@ class ConversationTestCase(TestCase):
                     "value": "cursing"}]},
             "msg_id": "0F4HAL8HCcFiKXz0o"}
 
-        self.assertEqual(MessageFlowHandler.response(
-            wit_response_json_cursing) in response_map['cursing'], True)
+        message, intent = MessageFlowHandler.response(
+            wit_response_json_cursing)
+
+        self.assertEqual(intent, 'cursing')
+        self.assertEqual(message in response_map['cursing'], True)
 
     def test_response_intent_how_are_you(self):
         wit_response_json_how_are_you = {
@@ -39,8 +45,12 @@ class ConversationTestCase(TestCase):
                     "value": "how_are_you"}]},
             "msg_id": "0mEc95B3c0yvvp5D1"}
 
-        self.assertEqual(MessageFlowHandler.response(
-            wit_response_json_how_are_you) in response_map['how_are_you'], True)
+        message, intent = MessageFlowHandler.response(
+            wit_response_json_how_are_you)
+
+        self.assertEqual(intent, 'how_are_you')
+        self.assertEqual(message in response_map['how_are_you'], True)
+
 
     def test_response_intent_not_recognized(self):
         wit_response_json_problem = {
@@ -48,5 +58,8 @@ class ConversationTestCase(TestCase):
             "entities": {},
             "msg_id": "0uvCe0Tkgf9PLlsSO"}
 
-        self.assertEqual(MessageFlowHandler.response(
-            wit_response_json_problem) in response_map['connection_problems'], True)
+        message, intent = MessageFlowHandler.response(
+            wit_response_json_problem)
+
+        self.assertEqual(intent, 'connection_problems')
+        self.assertEqual(message in response_map['connection_problems'], True)

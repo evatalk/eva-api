@@ -9,7 +9,7 @@ class MessageFlowHandler(object):
     def response(cls, request):
         intent = cls._get_intent(request)
 
-        return cls._choose_intent_response(intent)
+        return cls._choose_intent_response(intent), intent
 
     @classmethod
     def _get_intent(cls, wit_response):

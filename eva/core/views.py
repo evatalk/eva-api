@@ -6,7 +6,7 @@ from eva.settings import eva_ia
 from handlers.conversations.request_handler import MessageFlowHandler
 
 
-class RequestHandler(APIView):
+class EVACoreView(APIView):
 
     def post(self, request):
         # asks the WIT to analyze the user's intention

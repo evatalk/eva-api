@@ -4,7 +4,7 @@ from core.models import (Message, MessagingService,
                          MessagingServiceUserIdentifier, User, UserMessage)
 
 
-class RequestDataVerifier(object):
+class ModelDataVerifier(object):
 
     @classmethod
     def verifies_if_messaging_service_exists(cls, messaging_service_name):

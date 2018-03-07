@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from eva.settings import eva_ia
-from handlers.conversations.request_handler import MessageFlowHandler
+from handlers.conversations.request_conversation_handler import \
+    MessageFlowHandler
 
 
 class EVACoreView(APIView):

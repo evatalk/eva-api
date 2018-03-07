@@ -14,6 +14,7 @@ class MessagingService(BaseModel):
 
 class User(BaseModel):
     first_name = models.CharField(max_length=100)
+    message_service_identifier = models.CharField(max_length=100)
 
 
 class Message(BaseModel):

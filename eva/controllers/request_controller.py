@@ -38,3 +38,49 @@ class ModelDataVerifier(object):
             exists = False
 
         return exists
+
+
+class RequestDataVerifier(object):
+    @classmethod
+    def _verifies_if_provider_is_not_null(cls, request_body):
+        try:
+            provider = request_body['provider']
+        except KeyError:
+            return False
+
+        return provider is not None
+
+    @classmethod
+    def _verifies_if_message_is_not_null(cls, request_body):
+        try:
+            message = request_body['message']
+        except KeyError:
+            return False
+
+        return message is not None
+
+    @classmethod
+    def _verifies_if_user_first_name_is_not_null(cls, request_body):
+        try:
+            user_first_name = request_body['user_first_name']
+        except KeyError:
+            return False
+
+        return user_first_name is not None
+
+    @classmethod
+    def _verifies_if_provider_user_id_is_not_null(cls, request_body):
+        try:
+            provider_user_id = request_body['provider_user_id']
+        except KeyError:
+            return False
+
+        return provider_user_id is not None
+
+    @classmethod
+    def request_body_is_valid(cls, request_body):
+        return (
+            cls._verifies_if_message_is_not_null(request_body)
+            and cls._verifies_if_provider_is_not_null(request_body)
+            and cls._verifies_if_provider_user_id_is_not_null(request_body)
+            and cls._verifies_if_user_first_name_is_not_null(request_body))

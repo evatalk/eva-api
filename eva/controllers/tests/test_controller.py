@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from core.models import MessagingService, MessagingServiceUserIdentifier, User
 
-from ..request_controller import ModelDataVerifier
+from ..request_controller import ModelDataVerifier, RequestDataVerifier
 
 
 class ControllerTestCase(TestCase):
@@ -53,3 +53,12 @@ class ControllerTestCase(TestCase):
         messaging_service = MessagingService.objects.get(name="Telegram")
         self.assertEqual(
             ModelDataVerifier.verifies_if_messaging_service_identifier_exists(user, messaging_service), False)
+
+    def test_verifies_if_request_body_is_valid(self):
+        request_body = {
+            "provider": "Telegram",
+            "message": "Olá, Eva",
+            "user_first_name": "Fulano",
+            "provider_user_id": "289j891289ssa"}
+
+        self.assertEqual(RequestDataVerifier.request_body_is_valid(request_body), True)

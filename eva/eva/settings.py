@@ -11,11 +11,23 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from os.path import dirname, join
+
+from dotenv import load_dotenv
 
 from wit import Wit
 
+# Create .env file path.
+dotenv_path = join(dirname(__file__), '.env')
+
+# Load file from the path.
+load_dotenv(dotenv_path)
+ 
+# Accessing variables.
+WIT_TOKEN = os.getenv("WIT_TOKEN")
+
 # WIT API - Constructor - TOKEN
-eva_ia = Wit("WIT-TOKEN")
+eva_ia = Wit(WIT_TOKEN)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,6 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'core',
+    'controllers',
+    'handlers',
 ]
 
 MIDDLEWARE = [

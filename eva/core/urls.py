@@ -1,7 +1,7 @@
 from django.urls import path
 
-from core.views import RequestHandler
+from core.views import EVACoreView
 
 urlpatterns = [
-    path('message/handler', RequestHandler.as_view(), name='request_handler'),
+    path('message/handler', EVACoreView.as_view(), name='request_handler'),
 ]

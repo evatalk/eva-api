@@ -1,4 +1,6 @@
 import csv
+
+from eva.settings import INFORMATIONS_STORAGE_PATH
 from information_map import USER_INFORMATION
 
 

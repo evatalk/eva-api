@@ -1,4 +1,4 @@
-USER_INFORMATION = {
+USER_INFORMATION_MAP = {
     "cod_matricula": 0,
     "dt_matricula": 1,
     "cod_pf": 2,
@@ -8,7 +8,7 @@ USER_INFORMATION = {
     "municipio_origem": 6,
     "sexo": 7,
     "data_nascimento": 8,
-    "cod_pais_origem": 9, 
+    "cod_pais_origem": 9,
     "nacionalidade": 10,
     "login_liferay": 11,
     "nome_exibicao": 12,

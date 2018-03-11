@@ -1,4 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
+from rest_framework.authtoken.models import Token
 
 
 class BaseModel(models.Model):
@@ -12,9 +14,10 @@ class MessagingService(BaseModel):
     name = models.CharField(max_length=100)
 
 
-class User(BaseModel):
-    first_name = models.CharField(max_length=100)
-    messaging_service_identifier = models.CharField(max_length=100)
+class UserProfile(BaseModel):
+    name = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=15)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 class Message(BaseModel):
@@ -27,11 +30,11 @@ class MessagingServiceUserIdentifier(BaseModel):
     messaging_service = models.ForeignKey(
         MessagingService, related_name="messaging_service_user_identifier", on_delete=models.CASCADE)
     user = models.ForeignKey(
-        User, related_name="messaging_service_user_identifier", on_delete=models.CASCADE)
+        UserProfile, related_name="messaging_service_user_identifier", on_delete=models.CASCADE)
 
 
 class UserMessage(BaseModel):
     message = models.ForeignKey(
         Message, related_name="user_messages", on_delete=models.CASCADE)
     user = models.ForeignKey(
-        User, related_name="user_messages", on_delete=models.CASCADE)
+        UserProfile, related_name="user_messages", on_delete=models.CASCADE)

@@ -1,4 +1,4 @@
-USER_INFORMATION: {
+USER_INFORMATION = {
     "cod_matricula": 0,
     "dt_matricula": 1,
     "cod_pf": 2,

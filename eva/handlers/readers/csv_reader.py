@@ -1,30 +1,17 @@
 import csv
+from information_map import USER_INFORMATION
 
 
-class CSVFileReader(object):
+class StorageInformationReader(object):
 
     def __init__(self, file_name):
         self.csv_file_name = file_name
 
-    def check_if_email_exists(self, email_address):
-        with open(self.csv_file_name, encoding='utf-16-le', newline='') as f:
-            reader = csv.reader(f.readlines(), delimiter='|', quotechar='|')
-            count = 0
-            for row in reader:
-                a = row
-                print(a)
-                print("\n")
-                print("Tamanho", len(a))
-                print("\n")
-                count += 1
-                if count == 2:
-                    break
+    def check_if_enrollment_exists(self, enrollment):
+        with open(self.csv_file_name, "r", encoding='utf-16-le', newline='') as user_data_storage:
+            for user_data_row in user_data_storage:
+                user_informations = user_data_row.split("|")
+                if user_informations[USER_INFORMATION["cod_matricula"]] == enrollment:
+                    return True
 
-    def close(self):
-        pass
-
-
-if __name__ == "__main__":
-
-    test = CSVFileReader("csv_utf16.csv")
-    test.check_if_email_exists("cu")
+            return False

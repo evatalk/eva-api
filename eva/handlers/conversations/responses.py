@@ -1,4 +1,4 @@
-response_map = {
+RESPONSE_MAP = {
     "greetings": [
         "Saudações! Eu sou a Eva, sua assistente virtual! ;p",
         "Olá, Seja-bem vindo! Eu sou a Eva, sua assistente virtual! ;]",

@@ -25,6 +25,7 @@ load_dotenv(dotenv_path)
  
 # Accessing variables.
 WIT_TOKEN = os.getenv("WIT_TOKEN")
+CSV_FILE_NAME = os.getenv("STORAGE_FILE_NAME")
 
 # WIT API - Constructor - TOKEN
 eva_ia = Wit(WIT_TOKEN)
@@ -32,6 +33,7 @@ eva_ia = Wit(WIT_TOKEN)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+INFORMATIONS_STORAGE_PATH = join(dirname(__file__), join("storage", CSV_FILE_NAME))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'core',
     'controllers',
     'handlers',

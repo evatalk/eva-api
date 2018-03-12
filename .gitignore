@@ -1,3 +1,6 @@
+CSV File (For now)
+*.csv
+
 # Environment Variables
 .env
 

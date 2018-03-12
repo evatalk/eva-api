@@ -1,15 +1,14 @@
 from random import choice
-
-from .responses import response_map
+from controllers.eva_functions import EvaController
 
 
 class MessageFlowHandler(object):
 
     @classmethod
-    def response(cls, request):
-        intent = cls._get_intent(request)
+    def get_response(cls, request, wit_response):
+        intent = cls._get_intent(wit_response)
 
-        return cls._choose_intent_response(intent), intent
+        return cls._choose_intent_response(request, intent)
 
     @classmethod
     def _get_intent(cls, wit_response):
@@ -17,10 +16,12 @@ class MessageFlowHandler(object):
             # Que feio!
             intent = wit_response['entities']['intent'][0]['value']
         except KeyError:
-            intent = "connection_problems"
+            intent = "default"
 
         return intent
 
     @classmethod
-    def _choose_intent_response(cls, intent):
-        return choice(response_map[intent])
+    def _choose_intent_response(cls, request, intent):
+        eva_response_controller = EvaController(intent, request)
+
+        return eva_response_controller.response()

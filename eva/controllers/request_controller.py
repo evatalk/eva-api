@@ -1,7 +1,18 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from core.models import (Message, MessagingService,
-                         MessagingServiceUserIdentifier, User, UserMessage)
+                         MessagingServiceUserIdentifier, User, UserMessage,
+                         UserProfile)
+
+
+class UserRequestInformation(object):
+
+    @classmethod
+    def get_user_cpf(self, request):
+        user = request.user
+        user_profile = UserProfile.objects.get(user=user)
+
+        return user_profile.cpf
 
 
 class ModelDataVerifier(object):

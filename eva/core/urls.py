@@ -8,5 +8,5 @@ urlpatterns = [
     path('auth/register', SignUp.as_view(), name="signup"),
 
     # Messages responses
-    path('message/handler', EVACoreView.as_view(), name='request_handler'),
+    path('request', EVACoreView.as_view(), name='request_handler'),
 ]

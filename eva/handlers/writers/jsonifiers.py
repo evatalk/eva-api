@@ -13,9 +13,9 @@ class Jsonify(object):
         class_status_value = user_information_list[USER_INFORMATION_MAP["sit_turma"]]
 
         json_response["course_name"] = course_name_value
-        json_response["workload"] = workload_value
-        json_response["teaching_format"] = teaching_format_value
-        json_response["enrollment"] = enrollment_status_value
+        json_response["course_workload"] = workload_value
+        json_response["education_program"] = teaching_format_value
+        json_response["enrollment_status"] = enrollment_status_value
         json_response["class_status"] = class_status_value
 
         return json_response

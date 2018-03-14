@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from handlers.readers.information_map import USER_INFORMATION_MAP
 
 
-class UserInformationAnalyzer(object):
+class FinishedCoursesInformationAnalyzer(object):
 
     def __init__(self, informations):
         self.information_data = informations
@@ -20,7 +20,7 @@ class UserInformationAnalyzer(object):
     def analyze(self):
         for user_data in self.information_data:
             extract_data = self._extract_data(user_data)
-            
+
             # Analyze the data by end date
             self._analysis_end_date(extract_data)
 
@@ -43,11 +43,11 @@ class UserInformationAnalyzer(object):
             if check_if_user_finishes_after_2015:
                 self.history_analysis["after_2015"].append(
                     extracted_information_data)
-            
+
             elif check_if_user_finishes_before_2013:
                 self.history_analysis["before_2013"].append(
                     extracted_information_data)
-            
+
             else:
                 self.history_analysis["between_2013_to_2014"].append(
                     extracted_information_data)

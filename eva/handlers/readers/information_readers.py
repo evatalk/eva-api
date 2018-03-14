@@ -55,9 +55,9 @@ class StorageInformationReader(object):
                     history_data.append(json_user_history_data)
 
             return history_data
-    
-    def list_user_courses_by_enrollement(self, user_enrollement):
-        
+
+    def user_courses_history_to_analyze(self, user_enrollement, user_cpf):
+
         courses = []
 
         with open(self.csv_file_name, "r", encoding='utf-16-le', newline='') as user_data_storage:
@@ -65,8 +65,9 @@ class StorageInformationReader(object):
             for user_data_row in user_data_storage:
                 user_informations = user_data_row.split("|")
 
-                # Check informed enrollement 
-                if user_informations[USER_INFORMATION_MAP["cod_matricula"]] == user_enrollement:
+                # Check informed enrollement
+                if (user_informations[USER_INFORMATION_MAP["cod_matricula"]] == user_enrollement
+                        or user_informations[USER_INFORMATION_MAP["cpf"]] == user_cpf):
 
                     courses.append(user_informations)
 

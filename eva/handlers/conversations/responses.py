@@ -20,9 +20,9 @@ RESPONSE_MAP = {
         "Tranquila, hehe.. ;)"
     ],
     "finished_courses": {
-        "after_2015": "Você finalizou o(s) seguinte(s) curso(s) {}. Para emitir o certificado dos cursos relacionados acima, acesse: https://ava.enap.gov.br",
-        "between_2013_and_2014": "Você finalizou o(s) seguinte(s) curso(s) {}. Para emitir o certificado dos cursos relacionados acima, acesse: https://moodle23.enap.gov.br/",
-        "before_2013": "Você finalizou o(s) seguinte(s) curso(s) {}. Para emitir o certificado dos cursos relacionados acima, envie um e-mail para 'ead@enap.gov.br', com o título do curso que você deseja emitir o certificado",
+        "after_2015": "Você finalizou o(s) seguinte(s) curso(s): {}. Para emitir o certificado dos cursos relacionados acima, acesse: https://ava.enap.gov.br",
+        "between_2013_and_2014": "Você finalizou o(s) seguinte(s): curso(s) {}. Para emitir o certificado dos cursos relacionados acima, acesse: https://moodle23.enap.gov.br/",
+        "before_2013": "Você finalizou o(s) seguinte(s) curso(s): {}. Para emitir o certificado dos cursos relacionados acima, envie um e-mail para 'ead@enap.gov.br', com o título do curso que você deseja emitir o certificado",
     },
     "default": [
         "Desculpe, não consegui entender o que você quer. Poderia repetir?",

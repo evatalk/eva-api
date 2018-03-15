@@ -26,7 +26,7 @@ class FinishedCoursesInformationAnalyzer(object):
 
     def _analysis_end_date(self, extracted_information_data):
         datetime_analyzer = DateTimeAnalyzer(
-            extracted_information_data["course_end_date_value"])
+            extracted_information_data["course_end_date"])
 
         end_date = datetime_analyzer.get_date()
 
@@ -95,6 +95,8 @@ class DateTimeAnalyzer(object):
         if datetime_instance is None:
             return None
 
+        return datetime_instance
+
     def _split_datetime(self, date_string):
         try:
             date = date_string[:10].split("-")
@@ -123,7 +125,7 @@ class DateTimeAnalyzer(object):
         DAY = 2
 
         try:
-            date = datetime(date[YEAR], date[MONTH], date[DAY])
+            date = datetime(int(date[YEAR]), int(date[MONTH]), int(date[DAY]))
         except (TypeError, ValueError):
             return None
 

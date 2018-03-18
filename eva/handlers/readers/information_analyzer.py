@@ -15,9 +15,20 @@ class FinishedCoursesInformationAnalyzer(object):
 
     @property
     def data_analyzed(self):
+        """
+        After analyzing the user information, it
+        will return a dictionary with information
+        data divided by the predetermined time
+        intervals.
+        """
         return self.history_analysis
 
     def analyze(self):
+        """
+        Will iterate over the list containing all
+        the information acquired, doing the
+        individual analysis of each one of them.
+        """
         for user_data in self.information_data:
             extract_data = self._extract_data(user_data)
 
@@ -25,6 +36,13 @@ class FinishedCoursesInformationAnalyzer(object):
             self._analysis_end_date(extract_data)
 
     def _analysis_end_date(self, extracted_information_data):
+        """
+        From a dictionary with the information of a
+        user extracted, it will analyze the
+        timeframe in which the course was finalized
+        and add properly to the dictionary
+        "history_analysis".
+        """
         datetime_analyzer = DateTimeAnalyzer(
             extracted_information_data["course_end_date"])
 
@@ -53,6 +71,11 @@ class FinishedCoursesInformationAnalyzer(object):
                     extracted_information_data)
 
     def _extract_data(self, user_information_list):
+        """
+        Extracts a user's information from a list and
+        stores it in a dictionary containing the data
+        that will be used later.
+        """
         course_name_value = user_information_list[USER_INFORMATION_MAP["nome_curso"]]
         workload_value = user_information_list[USER_INFORMATION_MAP["carga_horaria"]]
         teaching_format_value = user_information_list[USER_INFORMATION_MAP["formato"]]

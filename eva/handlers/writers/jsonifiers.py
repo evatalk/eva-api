@@ -4,6 +4,11 @@ from handlers.readers.information_map import USER_INFORMATION_MAP
 class Jsonify(object):
     @classmethod
     def user_history_data(cls, user_information_list):
+        """
+        From a list containing user information, returns
+        a dictionary with the details presented more
+        explicitly.
+        """
         json_response = {}
 
         course_name_value = user_information_list[USER_INFORMATION_MAP["nome_curso"]]

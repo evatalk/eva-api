@@ -80,6 +80,11 @@ class DateTimeAnalyzer(object):
         return date >= date_to_compare
 
     def get_date(self):
+        """
+        It will return a datetime instance if no errors
+        occur during the transformations needed to
+        stencil the date from a raw set of information.
+        """
         splited_date = self._split_datetime(self.date_string)
 
         if splited_date is None:
@@ -98,6 +103,13 @@ class DateTimeAnalyzer(object):
         return datetime_instance
 
     def _split_datetime(self, date_string):
+        """
+        Gets the first ten values ​​of an entry, and divides
+        them by using the '-' as a separator, in order to
+        get a list with the day, month and year:
+
+        e.g.: 2016-04-12 12:58:17.107
+        """
         try:
             date = date_string[:10].split("-")
         except IndexError:
@@ -106,6 +118,10 @@ class DateTimeAnalyzer(object):
         return date
 
     def _get_year_month_day(self, date):
+        """
+        Check if a list has at least three values
+        which will be used as day, month and year.
+        """
         YEAR = 0
         MONTH = 1
         DAY = 2
@@ -120,6 +136,11 @@ class DateTimeAnalyzer(object):
         return (year, month, day)
 
     def _create_a_datetime_instance(self, date):
+        """
+        From a list or tuple with three elements
+        representing day, month and year, tries
+        to create a datetime instance.
+        """
         YEAR = 0
         MONTH = 1
         DAY = 2

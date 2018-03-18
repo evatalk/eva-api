@@ -57,7 +57,11 @@ class StorageInformationReader(object):
             return history_data
 
     def user_courses_history_to_analyze(self, user_enrollement, user_cpf):
-
+        """
+        Returns a list of all courses that the user has already
+        completed or is still attending based on cpf or enrollment,
+        which will be analyzed later.
+        """
         courses = []
 
         with open(self.csv_file_name, "r", encoding='utf-16-le', newline='') as user_data_storage:

@@ -9,6 +9,11 @@ class EvaResponseWriter(object):
         self.user_informations = user_informations
 
     def finished_courses_response(self):
+        """
+        Returns a dictionary containing the courses finalized
+        by the user divided into the appropriate predefined
+        time intervals.
+        """
         finished_courses_data = self._analyze_data_finished_courses(
             self.user_informations)
 
@@ -49,7 +54,12 @@ class EvaResponseWriter(object):
 
         return json_response
 
-    def _analyze_data_finished_courses(self, user_informations):
+    def _analyze_data_finished_courses(self, user_informations):        
+        """
+        It analyzes all the information obtained from
+        a user and divides them according to the date
+        of completion of the course.
+        """
         information_analyzer = FinishedCoursesInformationAnalyzer(
             user_informations)
 
@@ -60,6 +70,10 @@ class EvaResponseWriter(object):
         return analyzed_data
 
     def _get_list_of_finished_courses(self, dict_data):
+        """
+        From a list of dictionaries, returns a list
+        containing the name of the courses.
+        """
         course_names = []
 
         for data in dict_data:

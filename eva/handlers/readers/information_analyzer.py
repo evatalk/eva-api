@@ -15,9 +15,20 @@ class FinishedCoursesInformationAnalyzer(object):
 
     @property
     def data_analyzed(self):
+        """
+        After analyzing the user information, it
+        will return a dictionary with information
+        data divided by the predetermined time
+        intervals.
+        """
         return self.history_analysis
 
     def analyze(self):
+        """
+        Will iterate over the list containing all
+        the information acquired, doing the
+        individual analysis of each one of them.
+        """
         for user_data in self.information_data:
             extract_data = self._extract_data(user_data)
 
@@ -25,6 +36,13 @@ class FinishedCoursesInformationAnalyzer(object):
             self._analysis_end_date(extract_data)
 
     def _analysis_end_date(self, extracted_information_data):
+        """
+        From a dictionary with the information of a
+        user extracted, it will analyze the
+        timeframe in which the course was finalized
+        and add properly to the dictionary
+        "history_analysis".
+        """
         datetime_analyzer = DateTimeAnalyzer(
             extracted_information_data["course_end_date"])
 
@@ -53,6 +71,11 @@ class FinishedCoursesInformationAnalyzer(object):
                     extracted_information_data)
 
     def _extract_data(self, user_information_list):
+        """
+        Extracts a user's information from a list and
+        stores it in a dictionary containing the data
+        that will be used later.
+        """
         course_name_value = user_information_list[USER_INFORMATION_MAP["nome_curso"]]
         workload_value = user_information_list[USER_INFORMATION_MAP["carga_horaria"]]
         teaching_format_value = user_information_list[USER_INFORMATION_MAP["formato"]]
@@ -77,9 +100,18 @@ class DateTimeAnalyzer(object):
 
     @classmethod
     def compare_dates(cls, date, date_to_compare):
-        return date >= date_to_compare
+        try:
+            bool_date = date >= date_to_compare
+        except TypeError:
+            return False
+        return bool_date
 
     def get_date(self):
+        """
+        It will return a datetime instance if no errors
+        occur during the transformations needed to
+        stencil the date from a raw set of information.
+        """
         splited_date = self._split_datetime(self.date_string)
 
         if splited_date is None:
@@ -98,6 +130,13 @@ class DateTimeAnalyzer(object):
         return datetime_instance
 
     def _split_datetime(self, date_string):
+        """
+        Gets the first ten values ​​of an entry, and divides
+        them by using the '-' as a separator, in order to
+        get a list with the day, month and year:
+
+        e.g.: 2016-04-12 12:58:17.107
+        """
         try:
             date = date_string[:10].split("-")
         except IndexError:
@@ -106,6 +145,10 @@ class DateTimeAnalyzer(object):
         return date
 
     def _get_year_month_day(self, date):
+        """
+        Check if a list has at least three values
+        which will be used as day, month and year.
+        """
         YEAR = 0
         MONTH = 1
         DAY = 2
@@ -120,6 +163,11 @@ class DateTimeAnalyzer(object):
         return (year, month, day)
 
     def _create_a_datetime_instance(self, date):
+        """
+        From a list or tuple with three elements
+        representing day, month and year, tries
+        to create a datetime instance.
+        """
         YEAR = 0
         MONTH = 1
         DAY = 2

@@ -9,6 +9,7 @@ class UserRequestInformation(object):
 
     @classmethod
     def get_user_cpf(self, request):
+        """Returns the user's cpf"""
         user = request.user
         user_profile = UserProfile.objects.get(user=user)
 
@@ -51,6 +52,10 @@ class ModelDataVerifier(object):
         return exists
 
 
+"""
+This code session will be parsed and probably changed.
+For now, much of it is not being used in the system.
+"""
 class RequestDataVerifier(object):
     @classmethod
     def _verifies_if_provider_is_not_null(cls, request_body):

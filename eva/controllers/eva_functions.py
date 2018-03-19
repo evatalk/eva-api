@@ -41,6 +41,9 @@ class EvaController(object):
 
         elif self.intent == "certificate":
             return self.returns_the_finished_courses()
+        
+        elif self.intent == "open_to_subscription":
+            return self.returns_courses_open_to_subscription()
 
         else:
             return self.returns_a_default_response("default")
@@ -108,11 +111,20 @@ class EvaController(object):
         if the intention is not detected, one of the default
         response messages will be chosen randomly.
         """
+        #intent = self.get_intent()
         default_message = choice(RESPONSE_MAP[intent])
-        intent = self.get_intent()
         status_code = status.HTTP_200_OK
 
         return Response({"intent": intent, "message": default_message}, status=status_code)
+
+    def returns_courses_open_to_subscription(self):
+        data_reader = StorageInformationReader(INFORMATIONS_STORAGE_PATH)
+        user_cpf = UserRequestInformation.get_user_cpf(self.request)
+        open_for_subscription_data = data_reader.courses_open_for_subscriptions(user_cpf)
+        intent = self.get_intent()
+        status_code = status.HTTP_200_OK
+
+        return Response({"intent": intent, "content": open_for_subscription_data}, status=status_code)
 
     def get_intent(self):
         """Returns the intention."""

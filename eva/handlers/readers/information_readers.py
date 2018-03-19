@@ -1,6 +1,8 @@
 import csv
+from datetime import datetime
 
 from eva.settings import INFORMATIONS_STORAGE_PATH
+from handlers.readers.information_analyzer import DateTimeAnalyzer
 from handlers.readers.information_map import USER_INFORMATION_MAP
 from handlers.writers.jsonifiers import Jsonify
 
@@ -76,3 +78,26 @@ class StorageInformationReader(object):
                     courses.append(user_informations)
 
             return courses
+
+    def courses_open_for_subscriptions(self, user_cpf):
+        datetime_today = datetime.now()
+        open_for_subscriptions = []
+
+        with open(self.csv_file_name, "r", encoding='utf-16-le', newline='') as user_data_storage:
+
+            for user_data_row in user_data_storage:
+                user_informations = user_data_row.split("|")
+
+                # Check if informed CPF exists
+                if user_informations[USER_INFORMATION_MAP["cpf"]] == user_cpf:
+                    date_end_subscription_text = user_informations[USER_INFORMATION_MAP["dt_fim_insc"]]
+                    datetime_analyzer = DateTimeAnalyzer(
+                        date_end_subscription_text)
+                    date_end_subscription = datetime_analyzer.get_date()
+
+                    if datetime_analyzer.compare_dates(date_end_subscription, datetime_today):
+                        json_response = Jsonify.open_for_subscrition(
+                            user_informations)
+                        open_for_subscriptions.append(json_response)
+
+            return open_for_subscriptions

@@ -100,7 +100,11 @@ class DateTimeAnalyzer(object):
 
     @classmethod
     def compare_dates(cls, date, date_to_compare):
-        return date >= date_to_compare
+        try:
+            bool_date = date >= date_to_compare
+        except TypeError:
+            return False
+        return bool_date
 
     def get_date(self):
         """

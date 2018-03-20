@@ -74,8 +74,8 @@ class StorageInformationReader(object):
                 # Check informed enrollement
                 if (user_informations[USER_INFORMATION_MAP["cod_matricula"]] == user_enrollement
                         or user_informations[USER_INFORMATION_MAP["cpf"]] == user_cpf):
-
-                    courses.append(user_informations)
+                    if user_informations[USER_INFORMATION_MAP["sit_matricula"]].strip(" ") == "Concluído":
+                        courses.append(user_informations)
 
             return courses
 

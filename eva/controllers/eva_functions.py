@@ -103,7 +103,7 @@ class EvaController(object):
         intent = self.get_intent()
         status_code = status.HTTP_200_OK
 
-        return Response({"intent": intent, "message": eva_response_writer.finished_courses_response()}, status=status_code)
+        return Response({"intent": intent, "content": eva_response_writer.finished_courses_response()}, status=status_code)
 
     def returns_a_default_response(self, intent):
         """Default response.

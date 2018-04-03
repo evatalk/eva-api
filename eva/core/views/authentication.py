@@ -14,11 +14,9 @@ class SignUp(APIView):
         data_reader = StorageInformationReader(INFORMATIONS_STORAGE_PATH)
 
         # Request data
-        informed_cpf = request.data.get("cpf")
-        informed_email = request.data.get("email")
+        credentials = request.data.get("credentials")
 
-        is_valid, user_information = data_reader.check_the_information_veracity(
-            informed_cpf, informed_email)
+        is_valid, user_information = data_reader.check_the_information_veracity(credentials)
 
         if is_valid:
             register_token = Register.user_register(user_information)

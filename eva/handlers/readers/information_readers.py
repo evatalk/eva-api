@@ -12,7 +12,7 @@ class StorageInformationReader(object):
     def __init__(self, file_name):
         self.csv_file_name = file_name
 
-    def check_the_information_veracity(self, informed_cpf, informed_email):
+    def check_the_information_veracity(self, informed_data):
         """
         If the data entered is valid, it returns the complete information of the user.
         Otherwise, returns None.
@@ -22,15 +22,11 @@ class StorageInformationReader(object):
             for user_data_row in user_data_storage:
                 user_informations = user_data_row.split("|")
 
-                # Check if informed CPF exists
-                if user_informations[USER_INFORMATION_MAP["cpf"]] == informed_cpf:
-                    # The e-mail exists, now we gonna check the e-mail
-                    if user_informations[USER_INFORMATION_MAP["login_liferay"]] == informed_email:
-                        # Returns the user informations
-                        return True, user_informations
+                # check if the information given checks with cpf or email
+                if (user_informations[USER_INFORMATION_MAP["cpf"]] == informed_data
+                    or user_informations[USER_INFORMATION_MAP["login_liferay"]] == informed_data):
 
-                    # The CPF exists, but the e-mail don't
-                    return False, None
+                    return True, user_informations
 
             # Informed data is invalid
             return False, None

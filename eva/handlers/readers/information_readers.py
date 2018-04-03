@@ -24,7 +24,7 @@ class StorageInformationReader(object):
 
                 # check if the information given checks with cpf or email
                 if (user_informations[USER_INFORMATION_MAP["cpf"]] == informed_data
-                    or user_informations[USER_INFORMATION_MAP["login_liferay"]] == informed_data):
+                        or user_informations[USER_INFORMATION_MAP["login_liferay"]] == informed_data):
 
                     return True, user_informations
 
@@ -45,7 +45,8 @@ class StorageInformationReader(object):
                 user_informations = user_data_row.split("|")
 
                 # Check if informed CPF exists
-                if user_informations[USER_INFORMATION_MAP["cpf"]] == cpf_user_intendifier:
+                if (user_informations[USER_INFORMATION_MAP["cpf"]] == cpf_user_intendifier
+                        and user_informations[USER_INFORMATION_MAP["tipo_modulo"]] == "Cursos a Distância"):
 
                     json_user_history_data = Jsonify.user_history_data(
                         user_informations)
@@ -70,7 +71,9 @@ class StorageInformationReader(object):
                 # Check informed enrollement
                 if (user_informations[USER_INFORMATION_MAP["cod_matricula"]] == user_enrollement
                         or user_informations[USER_INFORMATION_MAP["cpf"]] == user_cpf):
-                    if user_informations[USER_INFORMATION_MAP["sit_matricula"]].strip(" ") == "Concluído":
+                    if (user_informations[USER_INFORMATION_MAP["tipo_modulo"]] == "Cursos a Distância"
+                            and user_informations[USER_INFORMATION_MAP["sit_matricula"]].strip(" ") == "Concluído"):
+
                         courses.append(user_informations)
 
             return courses

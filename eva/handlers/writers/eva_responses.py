@@ -1,5 +1,5 @@
-from handlers.conversations.responses import RESPONSE_MAP
-from handlers.readers.information_analyzer import FinishedCoursesInformationAnalyzer
+from handlers.readers.information_analyzer import \
+    FinishedCoursesInformationAnalyzer
 from handlers.writers.text_helpers import TextHandler
 
 

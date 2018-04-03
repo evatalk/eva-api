@@ -7,7 +7,6 @@ from rest_framework.response import Response
 
 from controllers.request_controller import UserRequestInformation
 from eva.settings import INFORMATIONS_STORAGE_PATH
-from handlers.conversations.responses import RESPONSE_MAP
 from handlers.readers.information_readers import StorageInformationReader
 from handlers.writers.eva_responses import EvaResponseWriter
 
@@ -68,22 +67,20 @@ class EvaController(object):
         Randomly returns one of the greetings messages
         to the user.
         """
-        greetings_message = choice(RESPONSE_MAP[self.intent])
         intent = self.get_intent()
         status_code = status.HTTP_200_OK
 
-        return Response({"intent": intent, "message": greetings_message}, status=status_code)
+        return Response({"intent": intent}, status=status_code)
 
     def returns_a_non_cursing_response(self):
         """Cursing response.
 
         Randomly returns one of the curses response messages.
         """
-        non_cursing_message = choice(RESPONSE_MAP[self.intent])
         intent = self.get_intent()
         status_code = status.HTTP_200_OK
 
-        return Response({"intent": intent, "message": non_cursing_message}, status=status_code)
+        return Response({"intent": intent}, status=status_code)
 
     def returns_the_finished_courses(self):
         """Courses that can be certified.
@@ -112,10 +109,9 @@ class EvaController(object):
         response messages will be chosen randomly.
         """
         #intent = self.get_intent()
-        default_message = choice(RESPONSE_MAP[intent])
         status_code = status.HTTP_200_OK
 
-        return Response({"intent": intent, "message": default_message}, status=status_code)
+        return Response({"intent": intent}, status=status_code)
 
     def returns_courses_open_to_subscription(self):
         data_reader = StorageInformationReader(INFORMATIONS_STORAGE_PATH)

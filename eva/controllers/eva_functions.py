@@ -29,19 +29,25 @@ class EvaController(object):
         message.
         """
 
-        if self.intent == "greetings":
+        if self.intent == "eva_greetings":
             return self.returns_a_greetings_response()
 
-        elif self.intent == "cursing":
+        elif self.intent == "eva_love":
+            pass
+
+        elif self.intent == "eva_how_are_you":
+            pass
+
+        elif self.intent == "eva_non_cursing":
             return self.returns_a_non_cursing_response()
 
-        elif self.intent == "history":
+        elif self.intent == "eva_user_history":
             return self.returns_the_user_courses_history()
 
-        elif self.intent == "certificate":
+        elif self.intent == "eva_user_certificate":
             return self.returns_the_finished_courses()
-        
-        elif self.intent == "open_to_subscription":
+
+        elif self.intent == "eva_user_courses_open_to_subscription":
             return self.returns_courses_open_to_subscription()
 
         else:
@@ -91,7 +97,7 @@ class EvaController(object):
         data_reader = StorageInformationReader(INFORMATIONS_STORAGE_PATH)
         user_cpf = UserRequestInformation.get_user_cpf(self.request)
         intent = self.get_intent()
-        
+
         user_courses_history_information = data_reader.user_courses_history_to_analyze(
             user_cpf=user_cpf, user_enrollement=None)
 
@@ -116,7 +122,8 @@ class EvaController(object):
     def returns_courses_open_to_subscription(self):
         data_reader = StorageInformationReader(INFORMATIONS_STORAGE_PATH)
         user_cpf = UserRequestInformation.get_user_cpf(self.request)
-        open_for_subscription_data = data_reader.courses_open_for_subscriptions(user_cpf)
+        open_for_subscription_data = data_reader.courses_open_for_subscriptions(
+            user_cpf)
         intent = self.get_intent()
         status_code = status.HTTP_200_OK
 

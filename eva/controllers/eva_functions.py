@@ -36,7 +36,7 @@ class EvaController(object):
             return self.returns_a_love_response()
 
         elif self.intent == "eva_how_are_you":
-            pass
+            return self.returns_a_how_are_you_response()
 
         elif self.intent == "eva_non_cursing":
             return self.returns_a_non_cursing_response()

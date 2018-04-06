@@ -21,11 +21,10 @@ class StorageInformationReader(object):
 
             for user_data_row in user_data_storage:
                 user_informations = user_data_row.split("|")
-
                 # check if the information given checks with cpf or email
                 if (user_informations[USER_INFORMATION_MAP["cpf"]] == informed_data
                         or user_informations[USER_INFORMATION_MAP["login_liferay"]] == informed_data):
-
+                    
                     return True, user_informations
 
             # Informed data is invalid

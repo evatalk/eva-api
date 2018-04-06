@@ -29,19 +29,25 @@ class EvaController(object):
         message.
         """
 
-        if self.intent == "greetings":
+        if self.intent == "eva_greetings":
             return self.returns_a_greetings_response()
 
-        elif self.intent == "cursing":
+        elif self.intent == "eva_love":
+            return self.returns_a_love_response()
+
+        elif self.intent == "eva_how_are_you":
+            return self.returns_a_how_are_you_response()
+
+        elif self.intent == "eva_non_cursing":
             return self.returns_a_non_cursing_response()
 
-        elif self.intent == "history":
+        elif self.intent == "eva_user_history":
             return self.returns_the_user_courses_history()
 
-        elif self.intent == "certificate":
+        elif self.intent == "eva_user_certificate":
             return self.returns_the_finished_courses()
-        
-        elif self.intent == "open_to_subscription":
+
+        elif self.intent == "eva_user_courses_open_to_subscription":
             return self.returns_courses_open_to_subscription()
 
         else:
@@ -62,21 +68,14 @@ class EvaController(object):
         return Response({"intent": intent, "content": users_courses_data}, status=status_code)
 
     def returns_a_greetings_response(self):
-        """Greetings message.
-
-        Randomly returns one of the greetings messages
-        to the user.
-        """
+        """Greetings message."""
         intent = self.get_intent()
         status_code = status.HTTP_200_OK
 
         return Response({"intent": intent}, status=status_code)
 
     def returns_a_non_cursing_response(self):
-        """Cursing response.
-
-        Randomly returns one of the curses response messages.
-        """
+        """A non cursing response"""
         intent = self.get_intent()
         status_code = status.HTTP_200_OK
 
@@ -91,7 +90,7 @@ class EvaController(object):
         data_reader = StorageInformationReader(INFORMATIONS_STORAGE_PATH)
         user_cpf = UserRequestInformation.get_user_cpf(self.request)
         intent = self.get_intent()
-        
+
         user_courses_history_information = data_reader.user_courses_history_to_analyze(
             user_cpf=user_cpf, user_enrollement=None)
 
@@ -105,8 +104,7 @@ class EvaController(object):
     def returns_a_default_response(self, intent):
         """Default response.
 
-        if the intention is not detected, one of the default
-        response messages will be chosen randomly.
+        if the intention is not detected
         """
         #intent = self.get_intent()
         status_code = status.HTTP_200_OK
@@ -114,13 +112,32 @@ class EvaController(object):
         return Response({"intent": intent}, status=status_code)
 
     def returns_courses_open_to_subscription(self):
+        """Open to subscription
+
+        returns all courses that are open from the user
+        """
         data_reader = StorageInformationReader(INFORMATIONS_STORAGE_PATH)
         user_cpf = UserRequestInformation.get_user_cpf(self.request)
-        open_for_subscription_data = data_reader.courses_open_for_subscriptions(user_cpf)
+        open_for_subscription_data = data_reader.courses_open_for_subscriptions(
+            user_cpf)
         intent = self.get_intent()
         status_code = status.HTTP_200_OK
 
         return Response({"intent": intent, "content": open_for_subscription_data}, status=status_code)
+
+    def returns_a_love_response(self):
+        """A love response s2"""
+        intent = self.get_intent()
+        status_code = status.HTTP_200_OK
+
+        return Response({"intent": intent}, status=status_code)
+
+    def returns_a_how_are_you_response(self):
+        """How are you response"""
+        intent = self.get_intent()
+        status_code = status.HTTP_200_OK
+
+        return Response({"intent": intent}, status=status_code)
 
     def get_intent(self):
         """Returns the intention."""

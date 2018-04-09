@@ -1,6 +1,6 @@
 from django.urls import path
 
-from core.views.authentication import SignUp
+from core.views.authentication_view import SignUp
 from core.views.eva_view import EVACoreView
 
 urlpatterns = [

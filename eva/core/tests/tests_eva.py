@@ -10,6 +10,6 @@ class EVATests(APITestCase):
         factory = APIRequestFactory()
 
     def test_get(self):
-        url = reverse('request_handler')
+        url = reverse('eva-request')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

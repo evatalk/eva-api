@@ -1,6 +1,5 @@
 from handlers.readers.information_analyzer import \
     FinishedCoursesInformationAnalyzer
-from handlers.writers.text_helpers import TextHandler
 
 
 class EvaResponseWriter(object):

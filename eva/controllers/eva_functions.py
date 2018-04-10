@@ -41,6 +41,15 @@ class EvaController(object):
         elif self.intent == "eva_non_cursing":
             return self.returns_a_non_cursing_response()
 
+        elif self.intent == "eva_hate":
+            return self.returns_a_non_hate_response()
+
+        elif self.intent == "eva_thanks":
+            return self.returns_a_thanks_response()
+
+        elif self.intent == "eva_description":
+            return self.returns_a_eva_description_response()
+
         elif self.intent == "eva_user_history":
             return self.returns_the_user_courses_history()
 
@@ -76,6 +85,27 @@ class EvaController(object):
 
     def returns_a_non_cursing_response(self):
         """A non cursing response"""
+        intent = self.get_intent()
+        status_code = status.HTTP_200_OK
+
+        return Response({"intent": intent}, status=status_code)
+
+    def returns_a_non_hate_response(self):
+        """A non hate response"""
+        intent = self.get_intent()
+        status_code = status.HTTP_200_OK
+
+        return Response({"intent": intent}, status=status_code)
+
+    def returns_a_thanks_response(self):
+        """A you welcome response"""
+        intent = self.get_intent()
+        status_code = status.HTTP_200_OK
+
+        return Response({"intent": intent}, status=status_code)
+
+    def returns_a_eva_description_response(self):
+        """returns an eva features description"""
         intent = self.get_intent()
         status_code = status.HTTP_200_OK
 

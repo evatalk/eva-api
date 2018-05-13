@@ -59,6 +59,9 @@ class EvaController(object):
         elif self.intent == "eva_user_courses_open_to_subscription":
             return self.returns_courses_open_to_subscription()
 
+        elif self.intent == "eva_logout":
+            return self.returns_a_logout_response()
+
         else:
             return self.returns_a_default_response("default")
 
@@ -164,6 +167,13 @@ class EvaController(object):
 
     def returns_a_how_are_you_response(self):
         """How are you response"""
+        intent = self.get_intent()
+        status_code = status.HTTP_200_OK
+
+        return Response({"intent": intent}, status=status_code)
+
+    def returns_a_logout_response(self):
+        """Logout you response"""
         intent = self.get_intent()
         status_code = status.HTTP_200_OK
 
